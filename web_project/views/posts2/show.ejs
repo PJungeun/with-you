@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <style>
+
+    .head{
+      padding-top: 10px;
+    width: 1905px;
+    height: 250px;
+  }
+  .banner{
+    width: 1905px;
+    height: 250px;
+  }
+  .path{
+    position: absolute;
+    top:255px;
+    background-color: rgba(33,33,33,0.8);
+    width: 1905px;
+    height: 70px;
+  }
+
+  #path_text{
+    color: rgba(255,255,255,0.7);
+    padding-top: 20px;
+  padding-left: 400px;
+  font-size: 20px;
+  }
+
+  .main{
+    padding-top: 30px;
+    width: 1900px;
+    padding-left: 350px;
+    height: 1470px;
+    padding-right: 300px;
+  }
+  #title{
+    color:#000;
+    font-size: 15px;
+  }
+  span{
+    padding-right: 5px;
+    color: #CC723D;
+  }
+       #content_text2{
+         padding-top: 30px;
+         padding-left: 40px;
+         font-size: 30px;
+       }
+
+.postcard{
+  position: absolute;
+  left: 833px;
+  top:20px;
+  width: 250px;
+  font-size: 20px;
+}
+.btnback{
+  position: absolute;
+  top:880px;
+  left: 440px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  text-align: center;
+  padding-top: 10px;
+  color:#fff;
+  font-size: 20px;
+}
+.btnback:hover{
+color:  #CC723D;
+background-color:  #fff;
+text-decoration: none;
+border:3px solid #CC723D;
+}
+.btnd{
+  position: absolute;
+  padding-top: 10px;
+  text-align: center;
+  top:880px;
+  left: 1405px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  color:#fff;
+  font-size: 20px;
+}
+.btnd:hover{
+  text-decoration: none;
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+}
+.btns{
+  position: absolute;
+  text-align: center;
+  padding-top: 10px;
+
+  top:880px;
+  left: 1280px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  color:#fff;
+  font-size: 20px;
+}
+.btns:hover{
+  text-decoration: none;
+
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+}
+.pb{
+  height: 520px;
+}
+.con{
+  padding-top: 20px;
+  padding-left: 70px;
+  font-size: 20px;
+}
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+
+  <div class="head">
+    <img class="banner" src="/img/head.png">
+    <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+        ＞ Community ＞ 봉사 후기 ＞ <%= post2.title %> </p></div>
+  </div>
+  <body>
+    <div class="main">
+
+      <div class="container mb-3">
+
+        <div class="card">
+          <p id="content_text2"><span class="glyphicon glyphicon-grain"></span> <%= post2.title %></h5>
+          <div class="row">
+
+            <div class="pb">
+              <div class="post-body con" data-search-highlight="body"><%= post2.body %></div>
+            </div>
+
+            <div class="postcard">
+              <div class="post-info card m-2 p-2">
+                <div class="border-bottom pb-1 mb-1">
+                  <div><span>아이디</span> : <span data-search-highlight="author"><%= post2.author ? post2.author.username : "" %></span></div>
+                  <div><span>조회수</span> : <span><%= post2.views %></span></div>
+                </div>
+                <div><span>게시일</span> : <span data-date-time="<%= post2.createdAt %>"></span></div>
+                <% if(post2.updatedAt) { %>
+                  <div><span>Updated</span> : <span data-date-time="<%= post2.updatedAt %>"></span></div>
+                <% } %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <a class="btnback" href="/posts2<%= getPost2QueryString() %>">취소</a>
+          <% if(isAuthenticated && post2.author && currentUser.id == post2.author.id){ %>
+            <a class="btns" href="/posts2/<%= post2._id %>/edit<%= getPost2QueryString() %>">수정</a>
+            <form action="/posts2/<%= post2._id %>?_method=delete<%= getPost2QueryString(true) %>" method="post" class="d-inline">
+              <a class="btnd" href="javascript:void(0)" onclick="confirm('게시물을 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+            </form>
+          <% } %>
+        </div>
+
+        <h4 class="mt-3">
+        <span class="glyphicon glyphicon-envelope"></span>       참가 신청</h4>
+        <% if(comment3Trees.length){ %>
+          <div class="mt-3 border-bottom">
+            <% comment3Trees.forEach(function(comment3) { %>
+              <%- include('./partials/comment3-show', {
+                post2: post2,
+                comment3: comment3,
+                comment3Form: comment3Form,
+                comment3Error: comment3Error,
+              }); %>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <div class="mt-3">
+          <%- include('./partials/comment3-form', {
+            actionUrl:'/comments3?post2Id=' + post2._id,
+            comment3: {},
+            comment3Form: comment3Form,
+            comment3Error: comment3Error,
+            parentComment3: null,
+          }); %>
+        </div>
+
+      </div>
+  </div>
+  <%- include('../partials/footer') %>
+
+  </body>
+</html>

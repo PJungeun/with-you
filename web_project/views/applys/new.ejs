@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <style>
+  body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+  .head{
+    padding-top: 10px;
+  width: 1905px;
+  height: 250px;
+}
+.banner{
+  width: 1905px;
+  height: 250px;
+}
+.path{
+  position: absolute;
+  top:255px;
+  background-color: rgba(33,33,33,0.8);
+  width: 1905px;
+  height: 70px;
+}
+
+#path_text{
+  color: rgba(255,255,255,0.7);
+  padding-top: 20px;
+padding-left: 400px;
+font-size: 20px;
+}
+.main{
+  width: 1900px;
+  padding-left: 350px;
+  height: 970px;
+  padding-right: 300px;
+}
+#title{
+  color:#000;
+  font-size: 15px;
+}
+span{
+  padding-right: 5px;
+  color: #CC723D;
+}
+     #content_text{
+       padding-top: 50px;
+       padding-left: 40px;
+       font-size: 30px;
+     }
+
+.can{
+  font-size: 20px;
+}
+.form-control{
+  font-size: 15px;
+}
+.btnback{
+  position: absolute;
+  top:1150px;
+  left: 1010px;
+  width: 200px;
+  height: 70px;
+  background-color:  #CC723D;
+  border:none;
+  padding-top: 20px;
+  text-align: center;
+  color:#fff;
+  font-size: 20px;
+}
+.btnback:hover{
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+text-decoration: none;
+}
+.btnsubmit{
+  position: absolute;
+  top:1150px;
+  left: 730px;
+  width: 200px;
+  height: 70px;
+  background-color:  #CC723D;
+  border:none;
+  color:#fff;
+  font-size: 20px;
+}
+.btnsubmit:hover{
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+}
+</style>
+  <body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="head">
+      <img class="banner" src="/img/head.png">
+      <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+          ＞ 봉사게시판 ＞ 봉사 등록/신청 ＞봉사 등록 </p></div>
+    </div>
+
+      <div class="main">
+        <p id="content_text"><span class="glyphicon glyphicon-pencil"></span>
+          봉사 등록</p>
+
+        <hr>
+        <div class="content">
+            <div class="container mb-3">
+              <form action="/applys<%= getApplyQueryString() %>" method="post">
+
+                <!-- title  -->
+                <div class="form-group">
+                  <p class="can" for="title"><span class="glyphicon glyphicon-grain"></span>제목</p>
+                  <input type="text" id="title" name="title" value="<%= apply.title %>" class="form-control <%= (errors.title)?'is-invalid':'' %>">
+                  <% if(errors.title){ %>
+                    <span class="invalid-feedback"><%= "내용을 작성해 주세요!" %></span>
+                  <% } %>
+                </div>
+
+                <!-- body 봉사내용  -->
+                <div class="form-group">
+                  <p class="can" for="body"><span class="glyphicon glyphicon-grain"></span>내용</p>
+                  <textarea id="body" name="body" rows="5" class="form-control <%= (errors.body)?'is-invalid':'' %>"><%= apply.body %></textarea>
+                  <% if(errors.body){ %>
+                    <span class="invalid-feedback"><%= "내용을 작성해 주세요!"  %></span>
+                  <% } %>
+                </div>
+
+                <!-- date 봉사날짜  -->
+                <div class="form-group">
+                <p class="can" for="date"><span class="glyphicon glyphicon-grain"></span>봉사날짜</p>
+                  <input type="date" id="date" name="date" value="<%= apply.date %>" class="form-control <%= (errors.date)?'is-invalid':'' %>">
+                  <% if(errors.date){ %>
+                    <span class="invalid-feedback"><%= "내용을 작성해 주세요!" %></span>
+                  <% } %>
+                </div>
+
+                <!-- time 봉사시간  -->
+                <div class="form-group">
+                <p class="can" for="time"><span class="glyphicon glyphicon-grain"></span>봉사시간</p>
+                  <input type="number" id="time" name="time" value="<%= apply.time %>" class="form-control <%= (errors.time)?'is-invalid':'' %>">
+                  <% if(errors.time){ %>
+                    <span class="invalid-feedback"><%="내용을 작성해 주세요!"  %></span>
+                  <% } %>
+                </div>
+
+                <!-- place 봉사장소  -->
+                <div class="form-group">
+                <p class="can" for="place"><span class="glyphicon glyphicon-grain"></span>장소</p>
+                  <textarea id="place" name="place" rows="5" class="form-control <%= (errors.place)?'is-invalid':'' %>"><%= apply.place %></textarea>
+                  <% if(errors.time){ %>
+                    <span class="invalid-feedback"><%= "내용을 작성해 주세요!"  %></span>
+                  <% } %>
+                </div>
+
+                <% if(errors.unhandled){ %>
+                  <div class="invalid-feedback d-block">
+                    <%= errors.unhandled %>
+                  </div>
+                <% } %>
+
+                <div>
+                  <a class="btnback" href="/applys<%= getApplyQueryString() %>">취소</a>
+                  <button type="submit" class="btnsubmit">등록</button>
+                </div>
+
+              </form>
+
+            </div>
+
+        </div>
+      </div>
+
+
+    <%- include('../partials/footer') %>
+
+
+
+
+  </body>
+</html>

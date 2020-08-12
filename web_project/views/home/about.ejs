@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <style>
+  .head{
+    padding-top: 10px;
+
+  width: 1905px;
+  height: 250px;
+}
+.banner{
+  width: 1905px;
+  height: 250px;
+}
+.path{
+  position: absolute;
+  top:255px;
+  background-color: rgba(33,33,33,0.8);
+  width: 1905px;
+  height: 70px;
+}
+
+#path_text{
+  color: rgba(255,255,255,0.7);
+  padding-top: 20px;
+padding-left: 600px;
+font-size: 20px;
+}
+.main{
+  width: 1900px;
+  padding-left: 600px;
+  height: 970px;
+  padding-right: 300px;
+}
+#title{
+  padding-top: 50px;
+  color:#000;
+  font-size: 50px;
+}
+
+.menu{
+  position: absolute;
+  top:255px;
+  left: 280px;
+  height: 1029px;
+  width: 270px;
+  background-color: #fff;
+  border: 0.2px solid;
+  border-color: rgba(69,69,69,0.2);
+}
+.menutitle{
+  padding-bottom: 27px;
+}
+.menubtn{
+  background-color: yellow;
+  height: 100px;
+  padding: 20px 121px;
+}
+#mini{
+  font-size: 30px;
+  padding-top:80px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+span{
+  padding-right: 5px;
+  color: #CC723D;
+}
+ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       width: 270px;
+       background-color:#E6E6E6;
+     }
+     li a {
+       font-size: 16px;
+         display: block;
+         color: #000;
+         padding: 20px 20px;
+         text-decoration: none;
+     }
+
+     li a:hover:not(.active) {
+         background-color: #CC723D;
+         color: white;
+         text-decoration:none;
+     }
+     #content_text{
+       padding-left: 40px;
+       padding-top: 30px;
+       font-size: 30px;
+     }
+     #content_text2{
+padding-left: 85px;
+font-size: 17px;
+     }
+     .c_i{
+       padding-left: 85px;
+       padding-bottom: 30px;
+     }
+
+</style>
+  <body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="head">
+      <img class="banner" src="/img/head.png">
+      <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+          ＞ 너랑나랑이란? ＞ 너랑나랑 소개</p></div>
+    </div>
+
+    <div class="main">
+      <p id="title">너랑나랑 소개</p>
+      <hr id="hrr">
+    <div class="content">
+      <p id="content_text"><span class="glyphicon glyphicon-grain"></span>
+        너랑나랑은?</p><br>
+        <p id="content_text2">너랑나랑은 개인 자원봉사 사이트입니다.<br>
+          자원봉사의 현재 의미는 어떤 일을 대가없이 자발적으로 참여하여 도움, 또는 그런 활동입니다.<br>
+          저희의 목적은 공공이나 개인단체에 속해 있지 않은 분들에게 삶의 편리함과 즐거움을 드리는 것입니다.<br>
+          도움이 필요한 분들에게 따뜻한 손길을 내밀어줄 봉사자분들을 환영합니다.<br><br>
+          <p id="content_text"><span class="glyphicon glyphicon-grain"></span>
+            자원봉사의 특성</p><br>
+            <img class="c_i" src="/img/c1.png">
+            <img class="c_i" src="/img/c2.png">
+            <br>
+            <img class="c_i" src="/img/c3.png">
+            <img class="c_i" src="/img/c4.png">
+
+
+    </div>
+    </div>
+
+    <div class="menu">
+      <div class="menutitle">
+      <p id="mini">너랑나랑이란?</p>
+      <hr width="180px" style="border: solid 2px #CC723D">
+    </div>
+    <div id="side_left">
+      <ul>
+           <li><a href="/about">
+              ▶ 너랑나랑 소개</a></li>
+           <li><a href="/story">
+               ▶ 너랑나랑 이야기</a></li>
+               <li><a href="/member">
+                ▶ 조직 구성</a></li>
+             </ul>
+    </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

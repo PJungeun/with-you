@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+
+</head>
+<style>
+
+ .main1 {
+   padding-top: 10px;
+   width: 1905px;
+   height: 600px;
+ }
+
+ .main_image {
+   width: 1900px;
+   height: 600px;
+ }
+
+  .main3-1 {
+    width: 1900px;
+    position: relative;
+    display: inline-block;
+    padding-top: 60px;
+    padding-left: 280px;
+    height: 300px;
+  }
+
+  .main3_image {
+    position: relative;
+    display: inline-block;
+    width: 450px;
+    padding-top: 50px;
+    padding-bottom: 280px;
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+
+  #main3-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 30px;
+    padding-left: 605px;
+  }
+
+  .main3-2 {
+    font-family: 'Noto Sans KR', sans-serif;
+    width:1905px;
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    height: 110px;
+    padding-bottom: 40px;
+  }
+
+  #main3-text1 {
+    text-align: center;
+    padding-left: 300px;
+    position: relative;
+    display: inline-block;
+  }
+
+  #main3-text2 {
+    text-align: center;
+    padding-left: 155px;
+    position: relative;
+    display: inline-block;
+  }
+
+  #main3-text3 {
+    text-align: center;
+    padding-left: 150px;
+    position: relative;
+    display: inline-block;
+  }
+  .main2 {
+    /* background-color: rgb(250,244,192,0.5); */
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-left: 500px;
+    width: 1905px;
+    height: 560px;
+  }
+
+  .ment {
+    font-size: 30px;
+    padding-top: 60px;
+    padding-left: 380px;
+     padding-bottom: 10px;
+
+  }
+
+  .arrow {
+    float: left;
+    cursor: pointer;
+    position: relative;
+    top: 170px;
+    padding-right: 50px;
+    padding-left: 50px;
+    width: 180px;
+  }
+
+  #center dd {
+    float: left;
+    width: 400px;
+  }
+
+  .c {
+    float: left;
+    width: 620px;
+    height: 400px;
+  }
+
+  #mask {
+    float: left;
+    overflow: hidden;
+    width: 600px;
+    height: 410px;
+  }
+
+#hrr{
+  float: left;
+border-color:rgba(0,0,0,0.2);
+width: 1905px;
+}
+  }
+</style>
+<script type="text/javascript">
+  var divWidth = "400"; //배너 1개 가로크기
+
+  //이전
+  function prev() {
+    $("#center").stop(true, true);
+
+    var moveX = parseInt($("#center").css("margin-left"));
+
+    if (moveX < 0) {
+      $("#center").animate({
+        "margin-left": "+=" + divWidth + "px"
+      }, 500);
+    } else {
+      alert("처음 입니다.");
+      return;
+    }
+  }
+
+  //다음
+  function next() {
+    $("#center").stop(true, true);
+
+    var hiddenWidth = ($("#center dd").length - 1) * (-divWidth);
+    var moveX = parseInt($("#center").css("margin-left"));
+    var lastWidth = (moveX - divWidth);
+
+    if (hiddenWidth < moveX) {
+      $("#center").animate({
+        "margin-left": "-=" + divWidth + "px"
+      }, 500);
+    } else {
+      alert("마지막 입니다.");
+      return;
+    }
+  }
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('.slide').cycle({
+      fx: 'fade'
+    });
+  });
+</script>
+  <body>
+    <%- include('../partials/nav') %>
+
+      <div class="main1">
+        <div class="slide">
+          <img class="main_image" src="/img/main22.png">
+          <img class="main_image" src="/img/main11.png">
+        </div>
+      </div>
+
+      <div class="main3-1">
+        <p id="main3-text">봉사자의 자세</p>
+        <img class="main3_image" src="/img/main3-2.png">
+        <img class="main3_image" src="/img/main3-1.png">
+        <img class="main3_image" src="/img/main3-3.png">
+      </div>
+      <div class="main3-2">
+        <p id="main3-text1">자원봉사활동을 하는 목적을 분명히 세우고<br>자발성을 갖고 임해주세요.</p>
+        <p id="main3-text2">나의 가족이라는 생각을 가지고<br>따뜻한 마음으로 사랑을 전달해주세요.</p>
+        <p id="main3-text3">복잡한 생각은 잠시 접어두고<br>그 순간을 신나게 즐겨주세요.</p>
+      </div>
+
+      <hr id="hrr">
+
+      <div class="main2">
+        <div class="ment">
+          오늘의 Gallery
+        </div>
+        <img class="arrow" onclick="prev()" src="/img/prev.png">
+        <div id="mask">
+          <div id="center">
+            <dl>
+              <dt>
+              <dd><img class="c" src="/img/g2.jpg"></dd>
+              <dd><img class="c" src="/img/g3.jpg"></dd>
+              <dd><img class="c" src="/img/g1.jpg"></dd>
+              </dt>
+            </dl>
+          </div>
+        </div>
+        <img class="arrow" onclick="next()" src="/img/next.png">
+      </div>
+      <%- include('../partials/footer') %>
+
+
+
+  </body>
+</html>

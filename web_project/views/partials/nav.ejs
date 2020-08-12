@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="wrapper">
+    <a href="/" class="header">
+      <img class="title" src="/img/title.png"></a>
+    <div class="dropdown">
+      <a href="/about" class="btn">너랑나랑이란?</a>
+      <div class="dropdown-content">
+        <div id="ch1">
+          <a href="/about">너랑나랑 소개</a>
+          <a href="/story">너랑나랑 이야기</a>
+          <a href="/member">조직구성</a>
+        </div>
+        <div id="ch2">
+          <a href="../applys">봉사 등록/신청</a>
+        </div>
+        <div id="ch3">
+          <a href="../posts">봉사 후기</a>
+          <a href="../posts2">질문 게시판</a>
+        </div>
+        <div id="ch4">
+          <a href="../posts3">자료실</a>
+          <a href="/posts4">실시간 접속자</a>
+        </div>
+      </div>
+      <a href="/applys" class="btn">봉사게시판</a>
+
+      <a href="../posts" class="btn"> Community</a>
+      <a href="../posts3" class="btn">자료실</a>
+
+    </div>
+    <div class="log">
+      <% if(isAuthenticated){ %>
+      <a href="/users/<%= currentUser.username %>" class="login">내 정보</a>
+      <a href="/logout" class="login">로그아웃</a>
+      <% } else { %>
+      <a href="/users/new" class="login">회원가입</a>
+      <a href="/login" class="login">로그인</a>
+      <% } %>
+    </div>
+  </div>

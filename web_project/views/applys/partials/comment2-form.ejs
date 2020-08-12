@@ -1,0 +1,32 @@
+<%/*
+ actionUrl
+ comment
+ commentForm
+ commentError
+ parentComment
+*/%>
+
+<form action="<%= actionUrl %><%= getApplyQueryString(true) %>" method="post">
+  <fieldset <%= !isAuthenticated?'disabled':'' %>>
+    <% if(parentComment2){ %>
+      <input type="hidden" name="parentComment2" value="<%= parentComment2 %>">
+    <% } %>
+    <div class="row">
+      <div class="col-5">
+        <textarea name="text" rows="2" class="form-r <%= (comment2Error._id == comment2._id && comment2Error.parentComment2 == parentComment2 && comment2Error.errors.text)?'is-invalid':'' %>"><%= (comment2Form._id == comment2._id)?comment2Form.form.text:comment2.text %></textarea>
+      </div>
+      <div class="col-7">
+        <% if(comment2._id){ %>
+          <button type="submit" class="btnr">수정</button>
+        <% } else if(parentComment2) {%>
+          <button type="submit" class="btnr">확인</button>
+        <% } else { %>
+          <button type="submit" class="btnr">확인</button>
+        <% } %>
+      </div>
+    </div>
+    <% if(comment2Error._id == comment2._id && comment2Error.parentComment2 == parentComment2 && comment2Error.errors.text){ %>
+      <span class="invalid-feedback d-block"><%="내용을 작성해 주세요!" %></span>
+    <% } %>
+  </fieldset>
+</form>

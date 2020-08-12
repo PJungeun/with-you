@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/head') %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    .chart{
+      position: absolute;
+      left: 300px;
+      border: 1px solid orange;
+      float: left;
+      margin: 30px;
+    }
+    .head{
+      padding-top: 10px;
+
+    width: 1905px;
+    height: 250px;
+    }
+    .banner{
+    width: 1905px;
+    height: 250px;
+    }
+    .path{
+    position: absolute;
+    top:255px;
+    background-color: rgba(33,33,33,0.8);
+    width: 1905px;
+    height: 70px;
+    }
+
+    #path_text{
+    color: rgba(255,255,255,0.7);
+    padding-top: 20px;
+    padding-left: 600px;
+    font-size: 20px;
+    }
+    .main{
+    width: 1900px;
+    padding-left: 600px;
+    height: 970px;
+    padding-right: 300px;
+    }
+    #title{
+    padding-top: 50px;
+    color:#000;
+    font-size: 50px;
+    }
+.menutitle{
+  padding-bottom: 27px;
+}
+    .menu{
+    position: absolute;
+    top:255px;
+    left: 280px;
+    height: 1029px;
+    width: 270px;
+    background-color: #fff;
+    border: 0.2px solid;
+    border-color: rgba(69,69,69,0.2);
+    }
+
+    .menubtn{
+    background-color: yellow;
+    height: 100px;
+    padding: 20px 121px;
+    }
+    #mini{
+    font-size: 30px;
+    padding-top:80px;
+    padding-bottom: 20px;
+    text-align: center;
+    }
+    .side_lefta{
+      padding-top: 20px;
+    }
+span{
+  padding-right: 5px;
+  color: #CC723D;
+}
+ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       width: 270px;
+       background-color:#E6E6E6;
+     }
+     li a {
+       font-size: 16px;
+         display: block;
+         color: #000;
+         padding: 20px 20px;
+         text-decoration: none;
+     }
+
+     li a:hover:not(.active) {
+         background-color: #CC723D;
+         color: white;
+         text-decoration:none;
+     }
+
+
+</style>
+</head>
+  <body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="head">
+      <img class="banner" src="/img/head.png">
+      <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+          ＞ 자료실 ＞ 실시간 접속자</p></div>
+    </div>
+
+    <div class="main">
+      <p id="title">실시간 접속자</p>
+      <hr id="hrr">
+    <div class="content">
+
+    </div>
+    </div>
+
+    <div class="menu">
+      <div class="menutitle">
+      <p id="mini">자료실</p>
+      <hr width="180px" style="border: solid 2px #CC723D"></div>
+      <div id="chart" class="chart" style="border: solid 3px #CC723D; width: 809px; height: 400px"></div>
+      <script type="text/javascript">
+      //Google Stuff
+      google.charts.load('current', {packages: ['corechart']});
+      google.charts.setOnLoadCallback(function(){ drawChart(new_option)});
+      </script>
+      <script type="text/javascript">
+        var chartOption = function(target, maxValue, color, name){
+          this.name = name;
+          this.target = target;
+          this.data = null;
+          this.chart = null;
+          this.options = {
+            legend: { position: 'none' },
+            vAxis: {minValue:0, maxValue:maxValue},
+            hAxis: {
+              textStyle: {
+                fontSize: 11
+              }
+            },
+            colors: [color],
+            animation: {
+              duration: 500,
+              easing: 'in',
+              startup: true
+            }
+          }
+
+        }
+
+        var new_option = new chartOption('chart', 80, '#FF5E00', '온도');
+
+        function drawChart(option) {
+          var o = option;
+          if(o != null){
+            //초기값일때만 처리
+            if(o.chart == null && o.data == null){
+              o.data = new google.visualization.DataTable();
+              o.data.addColumn('string', 'time');
+              o.data.addColumn('number', o.name);
+              o.data.addRow(['', 0]);
+              o.chart = new google.visualization.LineChart(document.getElementById(o.target));
+            }
+
+            o.chart.draw(o.data, o.options);
+          }
+        }
+
+        function animateRenewal(option){
+          var o = option;
+          if (o.data.getNumberOfRows() >= 10) {
+            o.data.removeRow(0);
+          }
+
+
+          var value = 0;
+          var maxValue = o.options.vAxis.maxValue;
+          if(maxValue <= 1){
+            value = Number((Math.random() * maxValue).toFixed(1));
+          }else {
+            value = Math.floor(Math.random() * maxValue);
+          }
+          o.data.insertRows(o.data.getNumberOfRows(), [[getNowTime(), value]]);
+          drawChart(o);
+        }
+
+        setInterval(function(){
+          animateRenewal(new_option);
+        }, 1000);
+
+        function getNowTime(){
+          var d = new Date();
+          var sep = ":";
+          var hh = d.getHours();
+          var mm = d.getMinutes();
+          var ss = d.getSeconds();
+          return hh + sep + mm + sep + ss;
+        }
+
+      </script>
+
+
+    <div id="side_left">
+      <ul>
+           <li><a href="/posts3">
+              ▶ 자료</a></li>
+           <li><a href="/posts4">
+               ▶ 실시간 접속자</a></li>
+
+             </ul>
+    </div>
+  </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

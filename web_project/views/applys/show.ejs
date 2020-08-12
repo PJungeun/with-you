@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<!DOCTYPE html>
+
+<head>
+  <%- include('../partials/head') %>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5hcY4FxXB__XhaIybVMdfnvf6ti9IYxE&callback=initMap"></script>
+  <script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: {
+          lat: 36.7316565,
+          lng: 127.918002
+        }
+
+      });
+      var geocoder = new google.maps.Geocoder();
+
+      document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+      });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({
+        'address': address
+      }, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location,
+            animation:google.maps.Animation.BOUNCE,
+             icon: '/img/pin.png'
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+  </script>
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 60%;
+      width: 80%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #floating-panel {
+      position: absolute;
+      top: 10px;
+
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      line-height: 30px;
+      padding-left: 10px;
+    }
+    .font_bold{
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .head{
+      padding-top: 10px;
+    width: 1905px;
+    height: 250px;
+  }
+  .banner{
+    width: 1905px;
+    height: 250px;
+  }
+  .path{
+    position: absolute;
+    top:255px;
+    background-color: rgba(33,33,33,0.8);
+    width: 1905px;
+    height: 70px;
+  }
+
+  #path_text{
+    color: rgba(255,255,255,0.7);
+    padding-top: 20px;
+  padding-left: 400px;
+  font-size: 20px;
+  }
+
+  .main{
+    padding-top: 30px;
+    width: 1900px;
+    padding-left: 350px;
+    height: 1470px;
+    padding-right: 300px;
+  }
+  #title{
+    color:#000;
+    font-size: 15px;
+  }
+  span{
+    padding-right: 5px;
+    color: #CC723D;
+  }
+       #content_text2{
+         padding-top: 30px;
+         padding-left: 40px;
+         font-size: 30px;
+       }
+
+.postcard{
+  position: absolute;
+  left: 833px;
+  top:20px;
+  width: 250px;
+  font-size: 20px;
+}
+.btnback{
+  position: absolute;
+  top:940px;
+  left: 20px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  text-align: center;
+  padding-top: 10px;
+  color:#fff;
+  font-size: 20px;
+}
+.btnback:hover{
+color:  #CC723D;
+background-color:  #fff;
+text-decoration: none;
+border:3px solid #CC723D;
+}
+.btnd{
+  position: absolute;
+  padding-top: 10px;
+  text-align: center;
+  top:940px;
+  left: 985px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  color:#fff;
+  font-size: 20px;
+}
+.btnd:hover{
+  text-decoration: none;
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+}
+.btns{
+  position: absolute;
+  text-align: center;
+  padding-top: 10px;
+
+  top:940px;
+  left: 870px;
+  width: 100px;
+  height: 50px;
+  background-color:  #CC723D;
+  border:none;
+  color:#fff;
+  font-size: 20px;
+}
+.btns:hover{
+  text-decoration: none;
+
+color:  #CC723D;
+background-color:  #fff;
+border:3px solid #CC723D;
+}
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+
+  <div class="head">
+    <img class="banner" src="/img/head.png">
+    <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+        ＞ 봉사게시판 ＞ 봉사 등록/신청 ＞ <%= apply.title %> </p></div>
+  </div>
+
+    <div class="main">
+      <div class="container mb-3">
+        <div class="card">
+          <p id="content_text2"><span class="glyphicon glyphicon-grain"></span> <%= apply.title %></h5>
+          <div class="row" style="margin-left:35px">
+
+            <div class="col-md-7 col-lg-8 col-xl-9 order-sm-2 order-md-1">
+              <br>
+              <div class="post-body p-2" data-search-highlight="body"><p class="font_bold">내용 : </p> <%= apply.body %></div><hr>
+            </div>
+
+            <div class="col-md-7 col-lg-8 col-xl-9 order-sm-2 order-md-1">
+              <div class="post-body p-2" data-search-highlight="body"><p class="font_bold">봉사날짜 : </p> <%= apply.date %></div><hr>
+            </div>
+
+            <div class="col-md-7 col-lg-8 col-xl-9 order-sm-2 order-md-1">
+              <div class="post-body p-2" data-search-highlight="body"><p class="font_bold">봉사시간 : </p> <%= apply.time %></div><hr>
+            </div>
+
+            <div class="col-md-7 col-lg-8 col-xl-9 order-sm-2 order-md-1">
+              <div class="post-body p-2" data-search-highlight="body"><p class="font_bold">장소 : </p><%= apply.place %></div>
+            </div>
+
+
+            <!-- Google Map API-Geocoding Service -->
+            <div class="col-md-7 col-lg-8 col-xl-9 order-sm-2 order-md-1">
+                  <div id="floating-panel">
+                    <input id="address" type="textbox" value=<%= apply.place %>>
+                    <input id="submit" type="button" value="Geocode">
+                  </div>
+
+                  <div id="map"></div>
+                  <br><br><br><br><br><br><br><br>   <br><br><br><br><br><br><br><br>  <br><br><br><br><br><br><br><br>
+
+            </div>
+
+            <div class="postcard">
+              <div class="post-info card m-2 p-2">
+                <div class="border-bottom pb-1 mb-1">
+                  <div><span>아이디</span> : <span data-search-highlight="author"><%= apply.author ? apply.author.username : "" %></span></div>
+                  <div><span>조회수</span> : <span><%= apply.views %></span></div>
+                </div>
+                <div><span>게시일</span> : <span data-date-time="<%= apply.createdAt %>"></span></div>
+                <% if(apply.updatedAt) { %>
+                <div><span>Updated</span> : <span data-date-time="<%= apply.updatedAt %>"></span></div>
+                <% } %>
+              </div>
+            </div>
+
+          </div>
+          <div class="mt-3">
+            <a class="btnback" href="/applys<%= getApplyQueryString() %>">취소</a>
+            <% if(isAuthenticated && apply.author && currentUser.id == apply.author.id){ %>
+            <a class="btns" href="/applys/<%= apply._id %>/edit<%= getApplyQueryString() %>">수정</a>
+            <form action="/applys/<%= apply._id %>?_method=delete<%= getApplyQueryString(true) %>" method="post" class="d-inline">
+              <a class="btnd" href="javascript:void(0)" onclick="confirm('게시물을 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+            </form>
+            <% } %>
+          </div>
+        </div>
+ <h4 class="mt-3">
+<span class="glyphicon glyphicon-envelope"></span>       참가 신청</h4>
+
+        <% if(comment2Trees.length){ %>
+        <div class="mt-3 border-bottom">
+          <% comment2Trees.forEach(function(comment2) { %>
+          <%- include('./partials/comment2-show', {
+                  apply: apply,
+                  comment2: comment2,
+                  comment2Form: comment2Form,
+                  comment2Error: comment2Error,
+                }); %>
+          <% }) %>
+        </div>
+        <% } %>
+
+        <div class="mt-3">
+          <%- include('./partials/comment2-form', {
+              actionUrl:'/comments2?applyId=' + apply._id,
+              comment2: {},
+              comment2Form: comment2Form,
+              comment2Error: comment2Error,
+              parentComment2: null,
+            }); %>
+        </div>
+
+      </div>
+
+          </div>
+
+
+    </div>
+
+
+  <%- include('../partials/footer') %>
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<%/*
+ apply
+ comment
+ commentForm
+ commentError
+*/%>
+
+<div class="border-top">
+  <% if(comment2.isDeleted){ %>
+  <% } else { %>
+    <div class="row pt-1 pb-1">
+      <div class="col-3 col-md-2 col-lg-1 pl-4"><%= comment2.author.username %></div>
+      <div id="comment2-<%= comment2._id %>" class="col-9 col-md-10 col-lg-11 <%= (comment2Error._id == comment2._id)?'comment2-edit-enabled':'' %> <%= (comment2Error.parentComment2 == comment2._id)?'comment2-reply-enabled':'' %>">
+        <div class="comment2-show">
+          <div class="comment2-text mb-3"><%= comment2.text %></div>
+          <small class="d-block">
+            ( 게시일: <span data-date-time="<%= comment2.createdAt %>"></span>
+            <% if(comment2.updatedAt){ %>
+              | 수정일: <span data-date-time="<%= comment2.updatedAt %>"></span>
+            <% } %>
+            )
+          </small>
+          <% if(isAuthenticated){ %>
+            <small class="d-block">
+              <a href="javascript:void(0)" onclick="$('.comment2-reply-enabled').removeClass('comment2-reply-enabled'); $('.comment2-edit-enabled').removeClass('comment2-edit-enabled'); $('#comment2-<%= comment2._id %>').addClass('comment2-reply-enabled')">댓글</a>
+              <% if(comment2.author && currentUser.id == comment2.author.id){ %>
+                |
+                <a href="javascript:void(0)" onclick="$('.comment2-reply-enabled').removeClass('comment2-reply-enabled'); $('.comment2-edit-enabled').removeClass('comment2-edit-enabled'); $('#comment2-<%= comment2._id %>').addClass('comment2-edit-enabled')">수정</a>
+                |
+                <form action="/comments2/<%= comment2._id %>?applyId=<%= apply._id %>&_method=delete<%= getApplyQueryString(true) %>" method="post" class="d-inline">
+                  <a href="javascript:void(0)" onclick="confirm('이 댓글을 지우시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+                </form>
+              <% } %>
+            </small>
+          <% } %>
+        </div>
+        <br>
+        <div class="comment2-edit">
+          <%- include('./comment2-form', {
+            actionUrl:'/comments2/' + comment2._id + '?applyId=' + apply._id + '&_method=put',
+            comment2: comment2,
+            comment2Form: comment2Form,
+            comment2Error: comment2Error,
+            parentComment2: null,
+          }); %>
+        </div>
+        <div class="comment2-reply">
+          <%- include('./comment2-form', {
+            actionUrl:'/comments2?applyId=' + apply._id,
+            comment2: {},
+            comment2Form: comment2Form,
+            comment2Error: comment2Error,
+            parentComment2: comment2._id,
+          }); %>
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+  <div class="ml-3">
+    <% if(comment2.childComments2){ %>
+      <% comment2.childComments2.forEach(function(childComment2) { %>
+        <%- include('./comment2-show', {
+          apply: apply,
+          comment2: childComment2,
+          comment2Form: comment2Form,
+          comment2Error: comment2Error,
+        }); %>
+      <% }) %>
+    <% } %>
+  </div>
+
+</div>

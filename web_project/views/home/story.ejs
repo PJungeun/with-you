@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <style>
+  .head{
+    padding-top: 10px;
+  width: 1905px;
+  height: 250px;
+}
+.banner{
+  width: 1905px;
+  height: 250px;
+}
+.path{
+  position: absolute;
+  top:255px;
+  background-color: rgba(33,33,33,0.8);
+  width: 1905px;
+  height: 70px;
+}
+
+#path_text{
+  color: rgba(255,255,255,0.7);
+  padding-top: 20px;
+padding-left: 600px;
+font-size: 20px;
+}
+.main{
+  width: 1900px;
+  padding-left: 600px;
+  height: 970px;
+  padding-right: 300px;
+}
+#title{
+  padding-top: 50px;
+  color:#000;
+  font-size: 50px;
+}
+
+.menu{
+  position: absolute;
+  top:255px;
+  left: 280px;
+  height: 1029px;
+  width: 270px;
+  background-color: #fff;
+  border: 0.2px solid;
+  border-color: rgba(69,69,69,0.2);
+}
+.menutitle{
+  padding-bottom: 27px;
+}
+.menubtn{
+  background-color: yellow;
+  height: 100px;
+  padding: 20px 121px;
+}
+#mini{
+  font-size: 30px;
+  padding-top:80px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+span{
+  padding-right: 5px;
+  color: #CC723D;
+}
+ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       width: 270px;
+       background-color:#E6E6E6;
+     }
+     li a {
+       font-size: 16px;
+         display: block;
+         color: #000;
+         padding: 20px 20px;
+         text-decoration: none;
+     }
+
+     li a:hover:not(.active) {
+         background-color: #CC723D;
+         color: white;
+         text-decoration:none;
+
+     }
+     #content_text{
+       padding-left: 40px;
+       padding-top: 30px;
+       font-size: 30px;
+     }
+     #content_text2{
+padding-left: 85px;
+font-size: 20px;
+     }
+     .c_i{
+       padding-left: 85px;
+       padding-bottom: 30px;
+     }
+
+</style>
+  <body>
+
+    <%- include('../partials/nav') %>
+
+
+    <div class="head">
+      <img class="banner" src="/img/head.png">
+      <div class="path"><p id="path_text"><span class="glyphicon glyphicon-home"></span>
+          ＞ 너랑나랑이란? ＞ 너랑나랑 이야기</p></div>
+    </div>
+
+
+      <div class="main">
+        <p id="title">너랑나랑 이야기</p>
+        <hr>
+        <div class="content">
+          <p id="content_text"><span class="glyphicon glyphicon-grain"></span>
+            너랑나랑의 역사</p><br>
+          <p id="content_text2">
+            2020년 5월 10일 아이디어 회의<br><br>
+            2020년 5월 17일 스토리보드 회의 및 중간 발표 준비<br><br>
+            2020년 5월 18일 프로젝트 중간 발표<br><br>
+            2020년 5월 23일 구체적인 디자인 및 구성 회의<br><br>
+            2020년 5월 29일 진행상황 점검1<br><br>
+            2020년 6월 06일 진행상황 점검2<br><br>
+            2020년 6월 12일 진행상황 점검3<br><br>
+            2020년 6월 17일 진행상황 점검4<br><br>
+            2020년 6월 22일 수정 및 최종 발표 준비<br><br>
+            2020년 6월 23일 프로젝트 최종 발표<br>
+    </p>
+        </div>
+      </div>
+
+
+    <div class="menu">
+      <div class="menutitle">
+      <p id="mini">너랑나랑이란?</p>
+      <hr width="180px" style="border: solid 2px #CC723D">
+    </div>
+    <div id="side_left">
+      <ul>
+           <li><a href="/about">
+              ▶ 너랑나랑 소개</a></li>
+           <li><a href="/story">
+              ▶ 너랑나랑 이야기</a></li>
+               <li><a href="/member">
+                  ▶ 조직 구성</a></li>
+             </ul>
+    </div>
+    </div>
+    <%- include('../partials/footer') %>
+
+    </div>
+  </body>
+</html>
