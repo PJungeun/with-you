@@ -79,7 +79,7 @@ router.get('/new', util.isLoggedin, function(req, res){
 router.post('/', util.isLoggedin, function(req, res){
   req.body.author = req.user._id;
 
-  Apply.create(req.body, function(err, apply){
+  Apply.create(req.body, function(err, apply){ //db에 data를 생성하는 함수(생성할 data object 받고, 콜백함수 받기)
     if(err){
       req.flash('apply', req.body);
       req.flash('errors', util.parseError(err));

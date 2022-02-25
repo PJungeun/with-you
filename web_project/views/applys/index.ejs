@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <%- include('../partials/head') %>
+  <%- include('../partials/head') %> <!--외부 ejs를 가져옴-->
 </head>
 <style>
   .head {
@@ -231,7 +231,7 @@
             <td colspan=5> 등록된 글이 없습니다.( </td>
           </tr>
           <% } %>
-          <% applys.forEach(function(apply) { %>
+          <% applys.forEach(function(apply) { %> <!--apply object에 forEach를 사용해서 코드를 반복 표시-->
           <% if(isAuthenticated && apply.author && currentUser.id == apply.author.id){ %>
           <tr>
             <td></td>
@@ -336,9 +336,8 @@
           </ul>
         </nav>
       </div>
-      <form action="/applys" method="get" class="post-index-tool">
+      <form action="/applys" method="get" class="post-index-tool"> <!--form이 submit되면 /applys에 get 요청-->
         <div class="form-row">
-
           <div class="form-group">
             <label>보기</label>
             <select name="limit" class="custom-select" onchange="this.parentElement.parentElement.parentElement.submit()">

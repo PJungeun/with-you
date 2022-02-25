@@ -1,12 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var bodyParser = require('body-parser');//boay-parser module를 bodyParser변수에 담기
+var app = express();
+var methodOverride = require('method-override');//method-override module를 methodOverride변수에 담기
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('./config/passport');
 var util = require('./util');
-var app = express();
+
 
 // DB setting
 mongoose.set('useNewUrlParser', true);
@@ -17,18 +18,18 @@ mongoose.connect('mongodb://127.0.0.1:27017/dbname', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 })
-.then(() => console.log('DB Connected!'))
+.then(() => console.log('DB Connected!')) //db연결 성공
 .catch(err => {
-     console.log('DB Connection Error: ' + err);
+     console.log('DB Connection Error: ' + err); //db연결 에러
 });
 
 
 // Other settings
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); //ejs 사용을 위해 express의 view engine에 ejs를 set하는 코드
 app.use(express.static(__dirname+'/public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(methodOverride('_method'));
+app.use(bodyParser.json()); //json형식의 데이터를 받는다는 설정, form에 입력한 데이터가 bodyParser를 통해 req.body로 생성이 된다
+app.use(bodyParser.urlencoded({extended:true})); //urlencoded data를 extended 알고리즘을 사용해서 분석한다는 설정
+app.use(methodOverride('_method')); //_method의 query로 들어오는 값을 HTTP method로 바꿈
 app.use(flash());
 app.use(session({secret:'MySecret', resave:true, saveUninitialized:true}));
 
