@@ -253,8 +253,8 @@ border:3px solid #CC723D;
           <div class="mt-3">
             <a class="btnback" href="/applys<%= getApplyQueryString() %>">취소</a>
             <% if(isAuthenticated && apply.author && currentUser.id == apply.author.id){ %>
-            <a class="btns" href="/applys/<%= apply._id %>/edit<%= getApplyQueryString() %>">수정</a>
-            <form action="/applys/<%= apply._id %>?_method=delete<%= getApplyQueryString(true) %>" method="post" class="d-inline">
+            <a class="btns" href="/applys/<%= apply._id %>/edit<%= getApplyQueryString() %>">수정</a> <!--a tag는 get만 요청 가능-->
+            <form action="/applys/<%= apply._id %>?_method=delete<%= getApplyQueryString(true) %>" method="post" class="d-inline"> <!--delete는 form으로 처리, form에서도 post만 요청가능하여 쿼리 추가-->
               <a class="btnd" href="javascript:void(0)" onclick="confirm('게시물을 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
             </form>
             <% } %>
@@ -285,18 +285,11 @@ border:3px solid #CC723D;
               parentComment2: null,
             }); %>
         </div>
-
       </div>
-
-          </div>
-
+        </div>
 
     </div>
 
-
   <%- include('../partials/footer') %>
-
-
 </body>
-
 </html>

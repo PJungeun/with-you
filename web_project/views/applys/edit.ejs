@@ -110,7 +110,7 @@ border:3px solid #CC723D;
         <hr>
         <div class="container mb-3">
 
-          <form action="/applys/<%= apply._id %>?_method=put<%= getApplyQueryString(true) %>" method="post">
+          <form action="/applys/<%= apply._id %>?_method=put<%= getApplyQueryString(true) %>" method="post"> <!--form에서 put 사용불가, _method=put 사용-->
 
             <div class="form-group">
                 <p class="can" for="title"><span class="glyphicon glyphicon-grain"></span>제목</p><input type="text" id="title" name="title" value="<%= apply.title %>" class="form-control <%= (errors.title)?'is-invalid':'' %>">

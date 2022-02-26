@@ -90,12 +90,12 @@ router.post('/', util.isLoggedin, function(req, res){
 });
 
 // show
-router.get('/:id', function(req, res){
+router.get('/:id', function(req, res){ //route에 :을 사용하면 해당 위치의 값을 받아 req.params에 넣음
   var comment2Form = req.flash('comment2Form')[0] || { _id: null, form: {} };
   var comment2Error = req.flash('comment2Error')[0] || { _id:null, parentComment2: null, errors:{} };
 
   Promise.all([
-      Apply.findOne({_id:req.params.id}).populate({ path: 'author', select: 'username' }),
+      Apply.findOne({_id:req.params.id}).populate({ path: 'author', select: 'username' }), //db에서 해당 model의 document를 하나 찾는 함수
       Comment2.find({apply:req.params.id}).sort('createdAt').populate({ path: 'author', select: 'username' })
     ])
     .then(([apply, comments2]) => {
@@ -128,7 +128,7 @@ router.get('/:id/edit', util.isLoggedin, checkPermission, function(req, res){
 // update
 router.put('/:id', util.isLoggedin, checkPermission, function(req, res){
   req.body.updatedAt = Date.now();
-  Apply.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators:true}, function(err, apply){
+  Apply.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators:true}, function(err, apply){ //db에서 해당 model의 document를 하나 찾아 그 data를 수정하는 함수
     if(err){
       req.flash('apply', req.body);
       req.flash('errors', util.parseError(err));
@@ -140,7 +140,7 @@ router.put('/:id', util.isLoggedin, checkPermission, function(req, res){
 
 // destroy
 router.delete('/:id', util.isLoggedin, checkPermission, function(req, res){
-  Apply.deleteOne({_id:req.params.id}, function(err){
+  Apply.deleteOne({_id:req.params.id}, function(err){ //DB에서 해당 model의 document를 하나 찾아 삭제하는 함수
     if(err) return res.json(err);
     res.redirect('/applys'+res.locals.getApplyQueryString());
   });
