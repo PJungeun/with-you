@@ -45,7 +45,7 @@ app.use(function(req,res,next){
 });
 
 // Routes
-app.use('/', require('./routes/home'));
+app.use('/', require('./routes/home')); //app.use('route',콜백함수)
 app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/posts2', util.getPost2QueryString, require('./routes/posts2'));
 app.use('/posts3', util.getPost3QueryString, require('./routes/posts3'));

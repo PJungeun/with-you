@@ -68,4 +68,4 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-module.exports = router;
+module.exports = router; //module.exports에 담긴 object가 module되어 require시 사용

@@ -1,6 +1,6 @@
 var express  = require('express');
-var router = express.Router();
-var Apply = require('../models/Apply');
+var router = express.Router(); //router함수 초기화
+var Apply = require('../models/Apply'); //apply module 호출
 var User = require('../models/User');
 var Comment2 = require('../models/Comment2');
 var util = require('../util');
