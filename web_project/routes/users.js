@@ -55,7 +55,7 @@ router.put('/:username', util.isLoggedin, checkPermission, function(req, res, ne
       // update user object
       user.originalPassword = user.password;
       user.password = req.body.newPassword? req.body.newPassword : user.password;
-      for(var p in req.body){
+      for(var p in req.body){ //db data에 각 항목 덮어쓰기
         user[p] = req.body[p];
       }
 

@@ -53,7 +53,7 @@ var userSchema = mongoose.Schema({
   toObject:{virtuals:true}
 });
 
-// virtuals
+// virtuals(db에 저장x, model에서 사용)
 userSchema.virtual('passwordConfirmation')
   .get(function(){ return this._passwordConfirmation; })
   .set(function(value){ this._passwordConfirmation=value; });
