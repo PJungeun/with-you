@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcryptjs'); //bcryptjs pacakge
 
 // schema
 var userSchema = mongoose.Schema({
@@ -95,7 +95,7 @@ userSchema.path('password').validate(function(v) {
     if(!user.currentPassword){
       user.invalidate('currentPassword', 'Current Password is required!');
     }
-    else if(!bcrypt.compareSync(user.currentPassword, user.originalPassword)){
+    else if(!bcrypt.compareSync(user.currentPassword, user.originalPassword)){//저장된 hash와 입력받은 pw의 hash 비교
       user.invalidate('currentPassword', 'Current Password is invalid!');
     }
 
@@ -109,7 +109,7 @@ userSchema.path('password').validate(function(v) {
 });
 
 // hash password
-userSchema.pre('save', function (next){
+userSchema.pre('save', function (next){ //save event 전 함수실행
   var user = this;
   if(!user.isModified('password')){
     return next();
