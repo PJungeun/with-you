@@ -5,12 +5,15 @@
 
 ## package 설치
 `` $ npm install --save ejs express mongoose ``
+
 `` $ npm install --save body-parser ``
 - 웹브라우저의 form으로 전송된 data를 서버에서 쉽게 사용하기 위해
 `` $ npm install --save method-override ``
 - query로 method 값을 받아서 request의 HTTP method를 바꿔주는 역할
 `` $ npm install --save bcryptjs ``
+
 `` $ npm install --save express-session connect-flash ``
+
 `` $ npm install --save passport passport-local ``
 
 ## 프로젝트 개발 환경
