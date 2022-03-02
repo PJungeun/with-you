@@ -19,9 +19,6 @@ router.get('/posts4', function(req, res){
   res.render('home/posts4');
 });
 
-
-
-
 // Login
 router.get('/login', function (req,res) {
   var username = req.flash('username')[0];
@@ -34,7 +31,7 @@ router.get('/login', function (req,res) {
 
 // Post Login
 router.post('/login',
-  function(req,res,next){
+  function(req,res,next){//form의 validation
     var errors = {};
     var isValid = true;
 
@@ -55,7 +52,7 @@ router.post('/login',
       res.redirect('/login');
     }
   },
-  passport.authenticate('local-login', {
+  passport.authenticate('local-login', {//로그인 진행
     successRedirect : '/',
     successRedirect : '/',
     failureRedirect : '/login'

@@ -5,7 +5,7 @@ var app = express();
 var methodOverride = require('method-override');//method-override module를 methodOverride변수에 담기
 var flash = require('connect-flash');
 var session = require('express-session');
-var passport = require('./config/passport');
+var passport = require('./config/passport');//config/passport module를 passport 변수에 담기
 var util = require('./util');
 
 
@@ -34,13 +34,13 @@ app.use(flash());//flash 초기화, 문자열 배열로 저장
 app.use(session({secret:'MySecret', resave:true, saveUninitialized:true}));//서버에서 접속자 구분
 
 // Passport
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize());//초기화
+app.use(passport.session()); //연결
 
 // Custom Middlewares
 app.use(function(req,res,next){
-  res.locals.isAuthenticated = req.isAuthenticated();
-  res.locals.currentUser = req.user;
+  res.locals.isAuthenticated = req.isAuthenticated(); //로그인 여부 확인
+  res.locals.currentUser = req.user; //로그인된 user의 정보
   next();
 });
 
