@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <%- include('../partials/head') %>
 </head>
@@ -53,11 +52,9 @@
     border: 0.2px solid;
     border-color: rgba(69, 69, 69, 0.2);
   }
-
   .menutitle {
     padding-bottom: 27px;
   }
-
   .menubtn {
     background-color: yellow;
     height: 100px;
@@ -75,7 +72,6 @@
     padding-right: 5px;
     color: #CC723D;
   }
-
   ul {
     list-style-type: none;
     margin: 0;
@@ -83,7 +79,6 @@
     width: 270px;
     background-color: #E6E6E6;
   }
-
   li a {
     font-size: 16px;
     display: block;
@@ -91,7 +86,6 @@
     padding: 20px 20px;
     text-decoration: none;
   }
-
   li a:hover:not(.active) {
     background-color: #CC723D;
     color: white;
@@ -105,16 +99,15 @@
     padding-bottom: 20px;
   }
 
-
   .col-sm-3{
     padding-left: 100px;
     width: 330px;
    font-size: 20px;
   }
-.col-sm-9{
-  padding-left: 50px;
-  padding-bottom: 15px;
-}
+  .col-sm-9{
+   padding-left: 50px;
+   padding-bottom: 15px;
+  }
   .form-control {
     width: 400px;
     height: 50px;
@@ -133,14 +126,13 @@
     font-size: 20px;
   }
   .signbtn:hover{
-  color:  #CC723D;
-  background-color:  #fff;
-  border:3px solid #CC723D;
+   color:  #CC723D;
+   background-color:  #fff;
+   border:3px solid #CC723D;
   }
 </style>
 <body>
   <%- include('../partials/nav') %>
-
   <div class="head">
     <img class="banner" src="/img/head.png">
     <div class="path">
@@ -257,7 +249,6 @@
                 </div>
               </div>
 
-
         <% if(errors.unhandled){ %>
           <div class="alert alert-danger">
             <%= errors.unhandled %>
@@ -267,7 +258,6 @@
         <div class="buttons">
           <button type="submit" class="signbtn">확인</button>
         </div>
-
       </form>
 
     </div>
@@ -280,13 +270,10 @@
         <ul>
           <li><a href="/users/<%= currentUser.username %>">
               ▶ 내 정보</a></li>
-
         </ul>
       </div>
     </div>
   </div>
   <%- include('../partials/footer') %>
-
 </body>
-
 </html>

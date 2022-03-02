@@ -30,8 +30,8 @@ app.use(express.static(__dirname+'/public'));
 app.use(bodyParser.json()); //json형식의 데이터를 받는다는 설정, form에 입력한 데이터가 bodyParser를 통해 req.body로 생성이 된다
 app.use(bodyParser.urlencoded({extended:true})); //urlencoded data를 extended 알고리즘을 사용해서 분석한다는 설정
 app.use(methodOverride('_method')); //_method의 query로 들어오는 값을 HTTP method로 바꿈
-app.use(flash());
-app.use(session({secret:'MySecret', resave:true, saveUninitialized:true}));
+app.use(flash());//flash 초기화, 문자열 배열로 저장
+app.use(session({secret:'MySecret', resave:true, saveUninitialized:true}));//서버에서 접속자 구분
 
 // Passport
 app.use(passport.initialize());
