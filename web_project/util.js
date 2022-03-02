@@ -17,7 +17,7 @@ util.parseError = function(errors){
   return parsed;
 }
 
-util.isLoggedin = function(req, res, next){
+util.isLoggedin = function(req, res, next){//로그인 상태 판단
   if(req.isAuthenticated()){
     next();
   }
@@ -27,7 +27,7 @@ util.isLoggedin = function(req, res, next){
   }
 }
 
-util.noPermission = function(req, res){
+util.noPermission = function(req, res){//접근권한 판단
   req.flash('errors', {login:"You don't have permission"});
   req.logout();
   res.redirect('/login');

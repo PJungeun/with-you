@@ -1,9 +1,5 @@
-
-
-
 <!DOCTYPE html>
 <html>
-
 <head>
   <%- include('../partials/head') %>
 </head>
@@ -210,7 +206,6 @@
     <hr>
     <div class="container mb-3">
 
-
       <table class="board-table table table-sm border-bottom">
         <colgroup>
           <col width="5%" />
@@ -267,7 +262,7 @@
       <div class="row mb-3">
 
         <div class="col-2">
-          <% if(isAuthenticated){ %>
+          <% if(isAuthenticated){ %> <!--isAuthenticated : index.js에서 req.locals에 있어 바로 사용 가능-->
             <a class="btnnew" href="/posts/new<%= getPostQueryString() %>">글쓰기</a>
           <% } %>
         </div>
